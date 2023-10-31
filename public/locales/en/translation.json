@@ -7,5 +7,7 @@
     "Переключить": "Toggle",
     "О сайте": "About us",
     "Короткий язык": "En",
-    "Войти": "Sign in"
+    "Войти": "Sign in",
+    "Введите username": "Username",
+    "Введите пароль": "Password"
 }
