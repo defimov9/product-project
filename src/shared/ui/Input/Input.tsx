@@ -1,5 +1,4 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-
 import React, { InputHTMLAttributes, memo, useEffect, useRef, useState } from 'react';
 import cls from './Input.module.scss';
 
@@ -12,7 +11,7 @@ interface InputProps extends HTMLInputProps {
     autofocus?: boolean;
 }
 
-const Input = (props: InputProps) => {
+export const Input = memo((props: InputProps) => {
     const {
         className,
         value,
@@ -22,9 +21,7 @@ const Input = (props: InputProps) => {
         autofocus,
         ...otherProps
     } = props;
-
     const ref = useRef<HTMLInputElement>(null);
-
     const [isFocused, setIsFocused] = useState(false);
     const [caretPosition, setCaretPosition] = useState(0);
 
@@ -40,11 +37,17 @@ const Input = (props: InputProps) => {
         setCaretPosition(e.target.value.length);
     };
 
-    const onBlur = () => setIsFocused(false);
+    const onBlur = () => {
+        setIsFocused(false);
+    };
 
-    const onFocus = () => setIsFocused(true);
+    const onFocus = () => {
+        setIsFocused(true);
+    };
 
-    const onSelect = (e: any) => setCaretPosition(e?.target?.selectionStart || 0);
+    const onSelect = (e: any) => {
+        setCaretPosition(e?.target?.selectionStart || 0);
+    };
 
     return (
         <div className={classNames(cls.InputWrapper, {}, [className])}>
@@ -67,6 +70,4 @@ const Input = (props: InputProps) => {
             </div>
         </div>
     );
-};
-
-export default memo(Input);
+});
